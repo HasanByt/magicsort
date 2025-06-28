@@ -9,7 +9,7 @@ public class InsertionSort implements ISort {
 
     @Override
     public List<Integer> sort(List<Integer> list) {
-        if (list == null || list.size() < 2) {
+        if (list == null || list.size() < 1) {
             return Collections.emptyList();
         }
 
