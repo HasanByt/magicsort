@@ -22,6 +22,15 @@ test:
   script:
     - mvn test
 
+checkstyle-job:
+  stage: test
+  script:
+    - mvn checkstyle:check
+  allow_failure: true # Optional: macht den Job nicht-blockierend
+  artifacts:
+    paths:
+      - target/checkstyle-result.xml
+
 package:
   stage: package
   image: maven:3.8.7-eclipse-temurin-17
