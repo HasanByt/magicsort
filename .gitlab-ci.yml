@@ -12,13 +12,13 @@ cache:
 
 build:
   stage: build
-  image: maven:3.8.7-eclipse-temurin-17
+  image: maven:3.9.6-eclipse-temurin-21
   script:
     - mvn clean compile
 
 test:
   stage: test
-  image: maven:3.8.7-eclipse-temurin-17
+  image: maven:3.9.6-eclipse-temurin-21
   script:
     - mvn test
 
@@ -33,7 +33,7 @@ checkstyle-job:
 
 package:
   stage: package
-  image: maven:3.8.7-eclipse-temurin-17
+  image: maven:3.9.6-eclipse-temurin-21
   script:
     - mvn package
   artifacts:
