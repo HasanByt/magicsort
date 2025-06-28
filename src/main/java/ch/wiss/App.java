@@ -1,4 +1,4 @@
-package ch.wiss.;
+package ch.wiss;
 
 /**
  * Hello world!
