@@ -1,4 +1,4 @@
-package ch.wiss.;
+package ch.wiss;
 
 import junit.framework.Test;
 import junit.framework.TestCase;
