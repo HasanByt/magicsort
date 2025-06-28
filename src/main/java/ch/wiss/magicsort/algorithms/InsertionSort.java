@@ -1,5 +1,6 @@
 package ch.wiss.magicsort.algorithms;
 
+import java.util.Collections;
 import java.util.List;
 
 import ch.wiss.magicsort.ISort;
@@ -9,7 +10,7 @@ public class InsertionSort implements ISort {
     @Override
     public List<Integer> sort(List<Integer> list) {
         if (list == null || list.size() < 2) {
-            return list;
+            return Collections.emptyList();
         }
 
         // In-place Insertion Sort
