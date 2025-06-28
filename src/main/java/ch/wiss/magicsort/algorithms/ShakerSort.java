@@ -1,4 +1,4 @@
-package ch.wiss.algorithms;
+package ch.wiss.magicsort.algorithms;
 
 import java.util.ArrayList;
 import java.util.List;
