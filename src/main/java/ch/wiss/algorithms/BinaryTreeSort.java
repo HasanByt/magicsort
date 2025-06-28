@@ -20,7 +20,7 @@ import ch.wiss.magicsort.ISort;
  * sortiert wird.
  *
  */
-public class BinaryTreeSortService implements ISort {
+public class BinaryTreeSort implements ISort {
 
     /**
      * Interne Klasse zur Darstellung eines Knotens im Binärbaum.
@@ -97,10 +97,10 @@ public class BinaryTreeSortService implements ISort {
     /**
      * Gibt den Namen des Algorithmus zurück.
      *
-     * @return "binary"
+     * @return "binarytreesort"
      */
     @Override
     public String getAlgorithmName() {
-        return "binary";
+        return "binarytreesort";
     }
 }
