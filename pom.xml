@@ -4,18 +4,20 @@
 
   <modelVersion>4.0.0</modelVersion>
 
-  <groupId>com.github.HasanByt</groupId> <!-- GitHub Username -->
+  <groupId>com.github.HasanByt</groupId> <!-- Dein GitHub-Benutzername -->
   <artifactId>magicsort</artifactId>
   <version>1.0.0</version>
   <packaging>jar</packaging>
   <name>magicsort</name>
-  <url>http://maven.apache.org</url>
+  <description>Sortieralgorithmen-Bibliothek</description>
+  <url>https://github.com/HasanByt/magicsort</url>
 
   <properties>
     <maven.compiler.source>17</maven.compiler.source>
     <maven.compiler.target>17</maven.compiler.target>
   </properties>
 
+  <!-- GitHub Package Registry Konfiguration -->
   <distributionManagement>
     <repository>
       <id>github</id>
@@ -35,6 +37,7 @@
 
   <build>
     <plugins>
+      <!-- Java-Compiler Plugin -->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-compiler-plugin</artifactId>
@@ -45,6 +48,7 @@
         </configuration>
       </plugin>
 
+      <!-- Optional: JAR Plugin -->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-jar-plugin</artifactId>
@@ -52,12 +56,13 @@
         <configuration>
           <archive>
             <manifest>
-              <mainClass>ch.wiss.magicsort.App</mainClass> <!-- optional -->
+              <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
             </manifest>
           </archive>
         </configuration>
       </plugin>
 
+      <!-- Optional: Checkstyle Plugin -->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-checkstyle-plugin</artifactId>
@@ -67,7 +72,6 @@
           <encoding>UTF-8</encoding>
           <consoleOutput>true</consoleOutput>
           <failsOnError>true</failsOnError>
-          <linkXRef>false</linkXRef>
         </configuration>
         <executions>
           <execution>
