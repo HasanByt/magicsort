@@ -1,5 +1,6 @@
 package ch.wiss.magicsort.algorithms;
 
+import ch.wiss.magicsort.SortResult;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
@@ -15,64 +16,51 @@ public class InsertionSortTest {
 
     @Test
     public void testSortBasic() {
-        // Arrange
         List<Integer> input = Arrays.asList(5, 4, 3, 2, 1);
-        List<Integer> output = Arrays.asList(1, 2, 3, 4, 5);
+        List<Integer> expected = Arrays.asList(1, 2, 3, 4, 5);
 
-        // Act
-        List<Integer> result = sorter.sort(input);
-
-        // Assert
-        assertEquals(output, result);
+        SortResult result = sorter.sort(input);
+        assertEquals(expected, result.getSorted());
     }
 
     @Test
     public void testSortEmptyList() {
-        // Arrange
         List<Integer> input = Collections.emptyList();
-        // Act
-        List<Integer> result = sorter.sort(input);
-        // Assert
-        assertTrue(result.isEmpty());
+        SortResult result = sorter.sort(input);
+        assertTrue(result.getSorted().isEmpty());
     }
 
     @Test
     public void testSortSingleElement() {
-        // Arrange
         List<Integer> input = Collections.singletonList(42);
-        // Act
-        List<Integer> result = sorter.sort(input);
-        // Assert
-        assertEquals(Collections.singletonList(42), result);
+        SortResult result = sorter.sort(input);
+        assertEquals(Collections.singletonList(42), result.getSorted());
     }
 
     @Test
     public void testSortWithDuplicates() {
-        // Arrange
         List<Integer> input = Arrays.asList(5, 5, 5, 1, 3, 2);
         List<Integer> expected = Arrays.asList(1, 2, 3, 5, 5, 5);
-        // Act
-        List<Integer> result = sorter.sort(input);
-        // Assert
-        assertEquals(expected, result);
+
+        SortResult result = sorter.sort(input);
+        assertEquals(expected, result.getSorted());
     }
 
     @Test
     public void testSortAlreadySorted() {
         List<Integer> input = Arrays.asList(1, 2, 3, 4, 5);
-        List<Integer> result = sorter.sort(input);
-        assertEquals(input, result);
+        SortResult result = sorter.sort(input);
+        assertEquals(input, result.getSorted());
     }
 
     @Test
     public void testNullInput() {
-        List<Integer> result = sorter.sort(null);
-        assertTrue(result.isEmpty());
+        SortResult result = sorter.sort(null);
+        assertTrue(result.getSorted().isEmpty());
     }
 
     @Test
     public void testAlgorithmName() {
         assertEquals("insertion", sorter.getAlgorithmName());
     }
-
 }

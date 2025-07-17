@@ -4,36 +4,30 @@ import java.util.ArrayList;
 import java.util.List;
 
 import ch.wiss.magicsort.ISort;
+import ch.wiss.magicsort.SortResult;
 
-/**
- * ShakerSortService ist eine Implementierung des ShakerSort-Algorithmus.
- * Der Algorithmus ist eine Variante von BubbleSort, die abwechselnd von links
- * nach rechts und von rechts nach links sortiert.
- */
 public class ShakerSort implements ISort {
 
-    /**
-     * Sortiert die gegebene Liste mit dem ShakerSort-Algorithmus.
-     *
-     * @param input Die zu sortierende Liste.
-     * @return Eine neue Liste mit den sortierten Elementen.
-     */
     @Override
-    public List<Integer> sort(List<Integer> input) {
+    public SortResult sort(List<Integer> input) {
         if (input == null || input.isEmpty()) {
-            return new ArrayList<>();
+            return new SortResult(List.of(), 0, 0);
         }
 
         List<Integer> list = new ArrayList<>(input);
         int left = 0;
         int right = list.size() - 1;
         boolean swapped = true;
+        int comparisons = 0;
+
+        long startTime = System.nanoTime();
 
         while (swapped) {
             swapped = false;
 
             // von links nach rechts
             for (int i = left; i < right; i++) {
+                comparisons++;
                 if (list.get(i) > list.get(i + 1)) {
                     swap(list, i, i + 1);
                     swapped = true;
@@ -44,6 +38,7 @@ public class ShakerSort implements ISort {
 
             // von rechts nach links
             for (int i = right; i > left; i--) {
+                comparisons++;
                 if (list.get(i - 1) > list.get(i)) {
                     swap(list, i - 1, i);
                     swapped = true;
@@ -53,7 +48,10 @@ public class ShakerSort implements ISort {
             left++;
         }
 
-        return list;
+        long endTime = System.nanoTime();
+        double durationMs = (endTime - startTime) / 1_000_000.0;
+
+        return new SortResult(list, comparisons, durationMs);
     }
 
     private void swap(List<Integer> list, int i, int j) {
@@ -62,11 +60,6 @@ public class ShakerSort implements ISort {
         list.set(j, temp);
     }
 
-    /**
-     * Gibt den Namen des Algorithmus zurück.
-     *
-     * @return "shaker"
-     */
     @Override
     public String getAlgorithmName() {
         return "shaker";

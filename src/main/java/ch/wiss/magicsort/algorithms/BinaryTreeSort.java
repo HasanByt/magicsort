@@ -5,64 +5,38 @@ import java.util.Collections;
 import java.util.List;
 
 import ch.wiss.magicsort.ISort;
+import ch.wiss.magicsort.SortResult;
 
-/**
- * BinaryTreeSortService ist eine Implementierung des Sortieralgorithmus "Binary
- * Tree Sort".
- * <p>
- * Dieser Algorithmus erstellt aus den Eingabewerten einen Binary Search Tree
- * (BST)
- * und traversiert diesen anschließend in In-Order-Reihenfolge, um die Werte
- * sortiert zurückzugeben.
- * <p>
- * Die Eingabe ist eine Liste von Strings, die nach ihrer natürlichen Ordnung
- * (alphabetisch)
- * sortiert wird.
- *
- */
 public class BinaryTreeSort implements ISort {
 
-    /**
-     * Interne Klasse zur Darstellung eines Knotens im Binärbaum.
-     */
+    private long comparisons; // zählt Vergleiche
+
     private static class TreeNode {
         Integer value;
         TreeNode left;
         TreeNode right;
+        BinaryTreeSort sortRef;
 
-        /**
-         * Konstruktor für einen neuen Knoten mit dem gegebenen Wert.
-         *
-         * @param value Der zu speichernde Wert.
-         */
-        public TreeNode(Integer value) {
+        public TreeNode(Integer value, BinaryTreeSort sortRef) {
             this.value = value;
+            this.sortRef = sortRef;
         }
 
-        /**
-         * Fügt einen neuen Wert korrekt in den Binärbaum ein.
-         *
-         * @param newValue Der einzufügende Wert.
-         */
         public void insert(Integer newValue) {
+            sortRef.comparisons++; // Vergleich zählt
             if (newValue.compareTo(value) <= 0) {
                 if (left == null)
-                    left = new TreeNode(newValue);
+                    left = new TreeNode(newValue, sortRef);
                 else
                     left.insert(newValue);
             } else {
                 if (right == null)
-                    right = new TreeNode(newValue);
+                    right = new TreeNode(newValue, sortRef);
                 else
                     right.insert(newValue);
             }
         }
 
-        /**
-         * Führt eine In-Order-Traversierung durch, um die sortierten Werte zu sammeln.
-         *
-         * @param result Liste zur Aufnahme der sortierten Werte.
-         */
         public void inOrder(List<Integer> result) {
             if (left != null)
                 left.inOrder(result);
@@ -72,35 +46,32 @@ public class BinaryTreeSort implements ISort {
         }
     }
 
-    /**
-     * Sortiert die gegebene Liste mit dem Binary Tree Sort Algorithmus.
-     *
-     * @param input Die zu sortierende Liste.
-     * @return Eine neue Liste mit den sortierten Elementen.
-     */
     @Override
-    public List<Integer> sort(List<Integer> input) {
+    public SortResult sort(List<Integer> input) {
+        comparisons = 0;
+
         if (input == null || input.isEmpty()) {
-            return Collections.emptyList();
+            return new SortResult(Collections.emptyList(), 0, 0.0);
         }
 
-        TreeNode root = new TreeNode(input.get(0));
+        long startTime = System.nanoTime();
+
+        TreeNode root = new TreeNode(input.get(0), this);
         for (int i = 1; i < input.size(); i++) {
             root.insert(input.get(i));
         }
 
         List<Integer> sorted = new ArrayList<>();
         root.inOrder(sorted);
-        return sorted;
+
+        long endTime = System.nanoTime();
+        double durationMs = (endTime - startTime) / 1_000_000.0;
+
+        return new SortResult(sorted, comparisons, durationMs);
     }
 
-    /**
-     * Gibt den Namen des Algorithmus zurück.
-     *
-     * @return "binarytreesort"
-     */
     @Override
     public String getAlgorithmName() {
-        return "binarytreesort";
+        return "BinaryTreeSort";
     }
 }

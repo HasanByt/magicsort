@@ -1,32 +1,45 @@
 package ch.wiss.magicsort.algorithms;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
 import ch.wiss.magicsort.ISort;
+import ch.wiss.magicsort.SortResult;
 
 public class InsertionSort implements ISort {
 
     @Override
-    public List<Integer> sort(List<Integer> list) {
-        if (list == null || list.size() < 1) {
-            return Collections.emptyList();
+    public SortResult sort(List<Integer> list) {
+        if (list == null || list.isEmpty()) {
+            return new SortResult(Collections.emptyList(), 0, 0);
         }
 
-        // In-place Insertion Sort
-        for (int i = 1; i < list.size(); i++) { //
-            int key = list.get(i);
+        List<Integer> sorted = new ArrayList<>(list);
+        int comparisons = 0;
+
+        long start = System.nanoTime();
+
+        for (int i = 1; i < sorted.size(); i++) {
+            int key = sorted.get(i);
             int j = i - 1;
 
-            while (j >= 0 && list.get(j) > key) {
-                list.set(j + 1, list.get(j)); // Schiebe Element nach rechts
+            while (j >= 0 && sorted.get(j) > key) {
+                comparisons++;
+                sorted.set(j + 1, sorted.get(j));
                 j--;
             }
 
-            list.set(j + 1, key); // Füge key an der richtigen Stelle ein
+            // Wenn Bedingung fehlschlägt, gab es trotzdem einen Vergleich
+            if (j >= 0) {
+                comparisons++;
+            }
+
+            sorted.set(j + 1, key);
         }
 
-        return list; // In-place sortiert
+        long duration = System.nanoTime() - start;
+        return new SortResult(sorted, comparisons, duration / 1_000_000.0);
     }
 
     @Override
