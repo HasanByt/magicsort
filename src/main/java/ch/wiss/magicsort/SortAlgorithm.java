@@ -3,14 +3,14 @@ package ch.wiss.magicsort;
 import java.util.Arrays;
 
 public enum SortAlgorithm {
-    BINARY_TREE("BinaryTreeSort"),
-    BUBBLE("BubbleSort"),
-    GNOME("GnomeSort"),
-    INSERTION("InsertionSort"),
-    MERGE("MergeSort"),
-    SHAKER("ShakerSort"),
-    SLOW("SlowSort"),
-    TIM("TimSort");
+    BINARY_TREE("binarytreesort"),
+    BUBBLE("bubblesort"),
+    GNOME("gnomesort"),
+    INSERTION("insertionsort"),
+    MERGE("mergesort"),
+    SHAKER("shakersort"),
+    SLOW("slowsort"),
+    TIM("timsort");
 
     private final String dbName;
 
