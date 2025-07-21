@@ -7,7 +7,7 @@ public class SortResult {
     private final long comparisons;
     private final double durationMs;
 
-    public SortResult(List<Integer> sorted, long comparisons, double durationMs) {
+    public record SortResult(List<Integer> sorted, long comparisons, double durationMs) {
         this.sorted = sorted;
         this.comparisons = comparisons;
         this.durationMs = durationMs;
