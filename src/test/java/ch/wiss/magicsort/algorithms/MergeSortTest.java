@@ -18,9 +18,9 @@ public class MergeSortTest {
 
         SortResult result = new MergeSort().sort(arr);
 
-        System.out.println("Sorted: " + result.getSorted());
+        System.out.println("Sorted: " + result.sorted());
 
-        assertEquals(expected, result.getSorted());
+        assertEquals(expected, result.sorted());
     }
 
     @Test
@@ -30,9 +30,9 @@ public class MergeSortTest {
 
         SortResult result = new MergeSort().sort(input);
 
-        System.out.println("Sorted (alreadySorted): " + result.getSorted());
+        System.out.println("Sorted (alreadySorted): " + result.sorted());
 
-        assertEquals(expected, result.getSorted());
+        assertEquals(expected, result.sorted());
     }
 
     @Test
@@ -42,8 +42,8 @@ public class MergeSortTest {
 
         SortResult result = new MergeSort().sort(input);
 
-        System.out.println("Sorted (withDuplicates): " + result.getSorted());
-        assertEquals(expected, result.getSorted());
+        System.out.println("Sorted (withDuplicates): " + result.sorted());
+        assertEquals(expected, result.sorted());
     }
 
     @Test
@@ -53,7 +53,7 @@ public class MergeSortTest {
 
         SortResult result = new MergeSort().sort(input);
 
-        System.out.println("Sorted (emptyList): " + result.getSorted());
-        assertEquals(expected, result.getSorted());
+        System.out.println("Sorted (emptyList): " + result.sorted());
+        assertEquals(expected, result.sorted());
     }
 }

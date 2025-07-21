@@ -20,21 +20,21 @@ public class InsertionSortTest {
         List<Integer> expected = Arrays.asList(1, 2, 3, 4, 5);
 
         SortResult result = sorter.sort(input);
-        assertEquals(expected, result.getSorted());
+        assertEquals(expected, result.sorted());
     }
 
     @Test
     public void testSortEmptyList() {
         List<Integer> input = Collections.emptyList();
         SortResult result = sorter.sort(input);
-        assertTrue(result.getSorted().isEmpty());
+        assertTrue(result.sorted().isEmpty());
     }
 
     @Test
     public void testSortSingleElement() {
         List<Integer> input = Collections.singletonList(42);
         SortResult result = sorter.sort(input);
-        assertEquals(Collections.singletonList(42), result.getSorted());
+        assertEquals(Collections.singletonList(42), result.sorted());
     }
 
     @Test
@@ -43,20 +43,20 @@ public class InsertionSortTest {
         List<Integer> expected = Arrays.asList(1, 2, 3, 5, 5, 5);
 
         SortResult result = sorter.sort(input);
-        assertEquals(expected, result.getSorted());
+        assertEquals(expected, result.sorted());
     }
 
     @Test
     public void testSortAlreadySorted() {
         List<Integer> input = Arrays.asList(1, 2, 3, 4, 5);
         SortResult result = sorter.sort(input);
-        assertEquals(input, result.getSorted());
+        assertEquals(input, result.sorted());
     }
 
     @Test
     public void testNullInput() {
         SortResult result = sorter.sort(null);
-        assertTrue(result.getSorted().isEmpty());
+        assertTrue(result.sorted().isEmpty());
     }
 
     @Test
