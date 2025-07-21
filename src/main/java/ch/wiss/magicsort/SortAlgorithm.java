@@ -24,8 +24,11 @@ public enum SortAlgorithm {
 
     public static SortAlgorithm fromDbName(String name) {
         return Arrays.stream(values())
-                .filter(a -> a.dbName.equalsIgnoreCase(name))
+                .filter(a -> a.dbName.equalsIgnoreCase(name) || // z. B. "binarytreesort"
+                        a.name().equalsIgnoreCase(name) // z. B. "BINARY_TREE"
+                )
                 .findFirst()
                 .orElseThrow(() -> new IllegalArgumentException("Unbekannter Algorithmus: " + name));
     }
+
 }
