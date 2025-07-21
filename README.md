@@ -84,4 +84,4 @@ mvn checkstyle:check
 
 Dieses Projekt steht unter der MIT-Lizenz. Siehe LICENSE.
 
-    Entwickelt mit ❤️ von Hasan Bytyqi – für das Schulprojekt im Modul M295.
+    Entwickelt mit ❤️ von Hasan Bytyqi – für das Schulprojekt im Modul M324.
